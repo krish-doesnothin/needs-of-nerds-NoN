@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Needs of Nerds | 3D Hub</title>
+    <link rel="stylesheet" href="{% static 'base/style.css' %}">
+</head>
+<body>
+    <!-- Floating Glass Navigation -->
+    <nav class="navbar">
+        <div class="logo">Needs of Nerds</div>
+        <ul class="nav-links">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#resources">Modules</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3D Hero Section -->
+    <header class="hero">
+        <div class="hero-content 3d-float">
+            <h1>Engineering Survival Kit</h1>
+            <p>Your centralized hub for modules, code, and project resources.</p>
+            <a href="#resources" class="btn-3d">Initialize Workspace</a>
+        </div>
+    </header>
+
+    <!-- 3D Database Grid -->
+    <section id="resources" class="resource-section">
+        <div class="resource-grid">
+            {% for resource in resources %}
+            <!-- The Card Container -->
+            <div class="card-3d">
+                <!-- The Content (Pushed outward in 3D space) -->
+                <div class="card-content">
+                    <h3>{{ resource.title }}</h3>
+                    <p>{{ resource.description }}</p>
+                    <a href="{{ resource.link }}" target="_blank" class="btn-3d-small">Access Source</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="card-3d">
+                <div class="card-content">
+                    <p>Database is empty. Access the admin panel to populate resources.</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
